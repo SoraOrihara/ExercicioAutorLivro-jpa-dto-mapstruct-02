@@ -1,6 +1,6 @@
 package br.com.springEstudo.AutorLivro.business.dto;
 
-import java.util.Set;
+
 import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ public record LivroRequestDto(
 		String genero,
 		
 		@NotBlank(message = "O id do autor é obrigatorio") 
-		Set<UUID> autorId
+		UUID autorId
 
 ) {
 
