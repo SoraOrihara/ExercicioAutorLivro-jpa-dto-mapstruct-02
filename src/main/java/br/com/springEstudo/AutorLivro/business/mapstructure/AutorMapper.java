@@ -1,5 +1,6 @@
 package br.com.springEstudo.AutorLivro.business.mapstructure;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -32,6 +33,8 @@ public interface AutorMapper {
 		 }
 		 return livros.stream().map(LivroEntity::getId).collect(Collectors.toSet());
 	 }
+	 
+	 List<AutorResponseDto> paraListaResponse(List<AutorEntity>entity);
 	 
 	 @Mapping(target = "livros", ignore = true)
 	 void updateParaAutorRequest(AutorRequestDto request,@MappingTarget AutorEntity entity);

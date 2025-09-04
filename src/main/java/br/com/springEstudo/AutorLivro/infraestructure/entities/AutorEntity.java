@@ -66,7 +66,7 @@ public class AutorEntity {
 		super();
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
-		this.livros = livros;
+		this.livros = (livros != null) ? livros : new HashSet<>();
 	}
 	
 	

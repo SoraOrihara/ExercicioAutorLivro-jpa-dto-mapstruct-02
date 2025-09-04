@@ -4,6 +4,7 @@ package br.com.springEstudo.AutorLivro.business.mapstructure;
 
 import java.util.List;
 
+
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,6 +22,7 @@ public interface LivroMapper {
 	@Mapping(target="autor",ignore=true)
 	LivroEntity paraLivroEntity(LivroRequestDto request);
 
+	
 	LivroResponseDto paraLivroResponseDto(LivroEntity entity);
 	
 	List<LivroResponseDto> paraListResposeDto(List<LivroEntity>livros);
