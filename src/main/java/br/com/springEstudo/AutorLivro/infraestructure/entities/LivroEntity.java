@@ -22,7 +22,7 @@ public class LivroEntity {
 	@Column(unique = true, nullable = false)
 	private String titulo;
 
-	private String anoPublicacao;
+	private Integer anoPublicacao;
 
 	@Column(nullable = false)
 	private String genero;
@@ -43,11 +43,11 @@ public class LivroEntity {
 		this.titulo = titulo;
 	}
 
-	public String getAnoPublicacao() {
+	public Integer getAnoPublicacao() {
 		return anoPublicacao;
 	}
 
-	public void setAnoPublicacao(String anoPublicacao) {
+	public void setAnoPublicacao(Integer anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
 	}
 
@@ -71,7 +71,7 @@ public class LivroEntity {
 		super();
 	}
 
-	public LivroEntity(String titulo, String anoPublicacao, String genero, AutorEntity autor) {
+	public LivroEntity(String titulo, Integer anoPublicacao, String genero, AutorEntity autor) {
 		super();
 		this.titulo = titulo;
 		this.anoPublicacao = anoPublicacao;
