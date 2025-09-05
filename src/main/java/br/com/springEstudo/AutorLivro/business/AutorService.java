@@ -9,6 +9,7 @@ import br.com.springEstudo.AutorLivro.business.dto.AutorPatchDto;
 import br.com.springEstudo.AutorLivro.business.dto.AutorRequestDto;
 import br.com.springEstudo.AutorLivro.business.dto.AutorResponseDto;
 import br.com.springEstudo.AutorLivro.business.mapstructure.AutorMapper;
+import br.com.springEstudo.AutorLivro.exceptions.ResourceNotFoundException;
 import br.com.springEstudo.AutorLivro.infraestructure.entities.AutorEntity;
 import br.com.springEstudo.AutorLivro.infraestructure.repositories.AutorRepository;
 import jakarta.transaction.Transactional;
@@ -29,13 +30,13 @@ public class AutorService {
 	}
 	
 	public AutorResponseDto listarPorId(UUID id) {
-		return autorMapper.paraAutorResponseDto(autorRepository.findById(id).orElseThrow(()-> new RuntimeException("CriarDPS")));
+		return autorMapper.paraAutorResponseDto(autorRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Não foi possivel encontrar o id "+id)));
 	}
 	
 	@Transactional
 	public void DeletarById(UUID id) {
 		if(!autorRepository.existsById(id)) {
-			throw new RuntimeException("erro, id não existente");
+			throw new ResourceNotFoundException("Não foi possivel encontrar o id "+id);
 		}
 		autorRepository.deleteById(id);
 	}
@@ -48,14 +49,14 @@ public class AutorService {
 	
 	@Transactional
 	public AutorResponseDto updatePut(UUID id,AutorRequestDto request) {
-		AutorEntity autorExistente = autorRepository.findById(id).orElseThrow(()-> new RuntimeException("erro"));
+		AutorEntity autorExistente = autorRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Não foi possivel encontrar o id "+id));
 		autorMapper.updateParaAutorRequest(request, autorExistente);
 		return autorMapper.paraAutorResponseDto(autorExistente);
 	}
 	
 	@Transactional
 	public AutorResponseDto updatePatch(UUID id,AutorPatchDto request) {
-		AutorEntity autorExistete =autorRepository.findById(id).orElseThrow(()-> new RuntimeException("erro"));
+		AutorEntity autorExistete =autorRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Não foi possivel encontrar o id "+id));
 		autorMapper.updateParaAutorPatch(request, autorExistete);
 		return autorMapper.paraAutorResponseDto(autorExistete);
 	}
